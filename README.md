@@ -20,11 +20,19 @@ Or install it yourself as:
 
 ## Usage
 
+### Configuration
+
+Edit `config.rb` and add:
+
+```rb
+activate :meta_tags
+```
+
 ### Title
 
 ```rb
-set_meta_tags title: 'My Awesome Website'
-title 'My Awesome Website'
+set_meta_tags title: 'Relevant title'
+title 'Relevant title'
 ```
 
 ### Description
