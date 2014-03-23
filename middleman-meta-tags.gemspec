@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ['Baptiste Lecocq']
   spec.email         = ['baptiste.lecocq@gmail.com']
   spec.summary       = %q{Meta tags for Middleman}
-  spec.description   = %q{Easy integration of meta tags into your Middleman app}
-  spec.homepage      = ''
+  spec.description   = %q{Easy integration of meta tags into your Middleman applications}
+  spec.homepage      = 'https://github.com/tiste/middleman-meta-tags'
   spec.license       = 'MIT'
 
   spec.files         = `git ls-files -z`.split("\x0")
