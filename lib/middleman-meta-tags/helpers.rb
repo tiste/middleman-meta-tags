@@ -1,4 +1,3 @@
-puts "Hi there"
 module Middleman
   module MetaTags
     module Helpers
