@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.name          = 'middleman-meta-tags'
   spec.version       = Middleman::MetaTags::VERSION
   spec.authors       = ['Baptiste Lecocq']
-  spec.email         = ['baptiste.lecocq@gmail.com']
+  spec.email         = ['hello@tiste.io']
   spec.summary       = %q{Meta tags for Middleman}
   spec.description   = %q{Easy integration of meta tags into your Middleman applications}
   spec.homepage      = 'https://github.com/tiste/middleman-meta-tags'
