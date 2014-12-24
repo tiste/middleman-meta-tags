@@ -20,11 +20,19 @@ Or install it yourself as:
 
 ## Usage
 
+### Configuration
+
+Edit `config.rb` and add:
+
+```rb
+activate :meta_tags
+```
+
 ### Title
 
 ```rb
-set_meta_tags title: 'My Awesome Website'
-title 'My Awesome Website'
+set_meta_tags title: 'Relevant title'
+title 'Relevant title'
 ```
 
 ### Description
@@ -52,6 +60,44 @@ display_meta_tags site: 'My Awesome Website'
 By default, there is a `|` as separator between title and website name.
 
 You can modify it by adding: `separator: '&raquo;'`
+
+## Autotagging
+
+If you want to enable auto meta tagging, put this in you `<head></head>` tag:
+
+```rb
+auto_display_meta_tags
+```
+
+This will look inside of `data/site.yml` file to find any site wide defaults.
+Then it looks the page meta data to attempt to display the following keys:
+
+- MM `title` => META `title`
+- MM `description` => META `description`
+- MM `twitter_card` (defaults to `summary_large_image`) => META `twitter:card`
+- MM `twitter_author` => META `twitter:creator`
+- MM `description` => META `twitter:description`
+- MM `pull_image` => META `twitter:image:src`
+- MM `publisher_twitter` => META `twitter:site`
+- MM `title` => META `twitter:title`
+- MM `description` => META `og:description`
+- MM `pull_image` => META `og:image`
+- MM `title` => META `og:site_name`
+- MM `title` => META `og:title`
+
+### Manually adding addition tags
+
+Create a helper method inside of your config.rb, like so
+
+```rb
+helper do
+  def my_tags
+    set_meta_tags key => value
+  end
+end
+```
+
+And add it to the layouts and views that you need.
 
 ## Contributing
 

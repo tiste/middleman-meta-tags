@@ -34,11 +34,50 @@ module Middleman
         keywords = meta_tags.delete(:keywords)
         result << tag(:meta, name: :keywords, content: keywords) unless keywords.blank?
 
+        meta_tags.each do |name, content|
+          result << tag(:meta, name: name, content: content ) unless content.blank?
+        end
+
         result = result.join("\n")
         result.html_safe
       end
 
+      def auto_display_meta_tags(default = {})
+        auto_tag
+
+        display_meta_tags default
+      end
+
+      def auto_tag
+        site_data = data['site'] || {}
+
+        set_meta_tags site: site_data['title']
+        set_meta_tags 'og:site_name' => site_data['title']
+
+        fall_through(site_data, :title, 'title')
+        fall_through(site_data, :description, 'description')
+
+        # Twitter cards
+        fall_through(site_data, 'twitter:card', 'twitter_card', 'summary_large_image')
+        fall_through(site_data, 'twitter:creator', 'twitter_author')
+        fall_through(site_data, 'twitter:description', 'description')
+        fall_through(site_data, 'twitter:image:src', 'pull_image')
+        fall_through(site_data, 'twitter:site', 'publisher_twitter')
+        fall_through(site_data, 'twitter:title', 'title')
+
+        # Open Graph
+        fall_through(site_data, 'og:description', 'description')
+        fall_through(site_data, 'og:image', 'pull_image')
+        fall_through(site_data, 'og:title', 'title')
+      end
+
     private
+
+      def fall_through(site_data, name, key, default = nil)
+        value = current_page.data[key] || site_data[key] || default
+        set_meta_tags name => value unless value.blank?
+        value
+      end
 
       def full_title(meta_tags)
         separator   = meta_tags[:separator] || '|'
