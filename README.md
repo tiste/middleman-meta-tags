@@ -69,21 +69,21 @@ If you want to enable auto meta tagging, put this in you `<head></head>` tag:
 auto_display_meta_tags
 ```
 
-This will look inside of data/site.yml file to find any site wide defaults.
+This will look inside of `data/site.yml` file to find any site wide defaults.
 Then it looks the page meta data to attempt to display the following keys:
 
-- MM `title` => META `site`
+- MM `title` => META `title`
 - MM `description` => META `description`
-- MM `title` => `og:site_name`
 - MM `twitter_card` (defaults to `summary_large_image`) => META `twitter:card`
-- MM `title` => META `twitter:title`
-- MM `publisher_twitter` => META `twitter:site`
 - MM `twitter_author` => META `twitter:creator`
 - MM `description` => META `twitter:description`
 - MM `pull_image` => META `twitter:image:src`
-- MM `title` => META `og:title`
+- MM `publisher_twitter` => META `twitter:site`
+- MM `title` => META `twitter:title`
 - MM `description` => META `og:description`
 - MM `pull_image` => META `og:image`
+- MM `title` => META `og:site_name`
+- MM `title` => META `og:title`
 
 ### Manually adding addition tags
 
@@ -98,7 +98,6 @@ end
 ```
 
 And add it to the layouts and views that you need.
-
 
 ## Contributing
 
