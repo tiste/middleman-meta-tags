@@ -2,7 +2,7 @@ module Middleman
   module MetaTags
     module Helpers
       def meta_tags
-        @meta_tags ||= {}
+        @meta_tags ||= ActiveSupport::HashWithIndifferentAccess.new
       end
 
       def set_meta_tags(meta_tags = {})
@@ -23,9 +23,11 @@ module Middleman
 
       def display_meta_tags(default = {})
         result    = []
-        meta_tags = default.merge(self.meta_tags)
+        meta_tags = default.merge(self.meta_tags).with_indifferent_access
 
         title = full_title(meta_tags)
+        meta_tags.delete(:title)
+        meta_tags.delete(:separator)
         result << content_tag(:title, title) unless title.blank?
 
         description = safe_description(meta_tags.delete(:description))
@@ -49,13 +51,14 @@ module Middleman
       end
 
       def auto_tag
-        site_data = data['site'] || {}
+        site_data = (data['site'] || {}).with_indifferent_access
 
         set_meta_tags site: site_data['site']
         set_meta_tags 'og:site_name' => site_data['site']
 
         fall_through(site_data, :title, 'title')
         fall_through(site_data, :description, 'description')
+        fall_through(site_data, :keywords, 'keywords')
 
         # Twitter cards
         fall_through(site_data, 'twitter:card', 'twitter_card', 'summary_large_image')
@@ -74,7 +77,7 @@ module Middleman
     private
 
       def fall_through(site_data, name, key, default = nil)
-        value = current_page.data[key] || site_data[key] || default
+        value = self.meta_tags[key] || site_data[key] || default
         set_meta_tags name => value unless value.blank?
         value
       end

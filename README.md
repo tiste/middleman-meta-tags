@@ -75,6 +75,7 @@ Then it looks the page meta data to attempt to display the following keys:
 - MM `site` => META `title`
 - MM `title` => META `title`
 - MM `description` => META `description`
+- MM `keywords` => META `keywords`
 - MM `twitter_card` (defaults to `summary_large_image`) => META `twitter:card`
 - MM `twitter_author` => META `twitter:creator`
 - MM `description` => META `twitter:description`

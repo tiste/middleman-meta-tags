@@ -1,5 +1,10 @@
 ## Next release
 
+## 0.1.2 (01/09/15)
+
+* Add keywords into site data
+* Fix bug with HashWithIndifferentAccess
+
 ## 0.1.1 (01/09/15)
 
 * Fix `site` key which was unavailable
