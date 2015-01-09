@@ -1,5 +1,9 @@
 ## Next release
 
+## 0.1.1 (01/09/15)
+
+* Fix `site` key which was unavailable
+
 ## 0.1.0 (12/24/14)
 
 * Update README

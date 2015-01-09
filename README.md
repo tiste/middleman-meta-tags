@@ -72,6 +72,7 @@ auto_display_meta_tags
 This will look inside of `data/site.yml` file to find any site wide defaults.
 Then it looks the page meta data to attempt to display the following keys:
 
+- MM `site` => META `title`
 - MM `title` => META `title`
 - MM `description` => META `description`
 - MM `twitter_card` (defaults to `summary_large_image`) => META `twitter:card`
@@ -82,7 +83,7 @@ Then it looks the page meta data to attempt to display the following keys:
 - MM `title` => META `twitter:title`
 - MM `description` => META `og:description`
 - MM `pull_image` => META `og:image`
-- MM `title` => META `og:site_name`
+- MM `site` => META `og:site_name`
 - MM `title` => META `og:title`
 
 ### Manually adding addition tags

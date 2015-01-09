@@ -51,8 +51,8 @@ module Middleman
       def auto_tag
         site_data = data['site'] || {}
 
-        set_meta_tags site: site_data['title']
-        set_meta_tags 'og:site_name' => site_data['title']
+        set_meta_tags site: site_data['site']
+        set_meta_tags 'og:site_name' => site_data['site']
 
         fall_through(site_data, :title, 'title')
         fall_through(site_data, :description, 'description')
