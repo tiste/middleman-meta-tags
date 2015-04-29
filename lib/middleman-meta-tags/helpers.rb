@@ -37,7 +37,11 @@ module Middleman
         result << tag(:meta, name: :keywords, content: keywords) unless keywords.blank?
 
         meta_tags.each do |name, content|
-          result << tag(:meta, name: name, content: content ) unless content.blank?
+          if name.start_with?('og:')
+            result << tag(:meta, name: name, property: name, content: content ) unless content.blank?
+          else
+            result << tag(:meta, name: name, content: content ) unless content.blank?
+          end
         end
 
         result = result.join("\n")
