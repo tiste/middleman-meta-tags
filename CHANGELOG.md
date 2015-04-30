@@ -1,5 +1,9 @@
 ## Next release
 
+## 0.1.3 (04/30/15)
+
+* Fix `og:` tag syntax
+
 ## 0.1.2 (01/09/15)
 
 * Add keywords into site data
