@@ -40,8 +40,9 @@ module Middleman
           if name.start_with?('og:')
             if name.start_with?('og:image')
               result << tag(:meta, property: 'og:image:url', content: content ) unless content.blank?
+            else
+              result << tag(:meta, name: name, property: name, content: content ) unless content.blank?
             end
-            result << tag(:meta, name: name, property: name, content: content ) unless content.blank?
           else
             result << tag(:meta, name: name, content: content ) unless content.blank?
           end
