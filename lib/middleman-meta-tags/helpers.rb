@@ -38,6 +38,8 @@ module Middleman
 
         meta_tags.each do |name, content|
           if name.start_with?('og:')
+            if name.start_with?('og:image')
+              result << tag(:meta, property: 'og:image:url', content: content ) unless content.blank?
             result << tag(:meta, name: name, property: name, content: content ) unless content.blank?
           else
             result << tag(:meta, name: name, content: content ) unless content.blank?
