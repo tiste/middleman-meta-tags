@@ -81,7 +81,11 @@ module Middleman
     private
 
       def fall_through(site_data, name, key, default = nil)
-        value = self.meta_tags[key] || site_data[key] || default
+        need_customized = site_data[:customize_by_frontmatter]
+        value = self.meta_tags[key] ||
+                (need_customized && current_page.data[key]) ||
+                site_data[key] ||
+                default
         set_meta_tags name => value unless value.blank?
         value
       end
