@@ -87,6 +87,10 @@ Then it looks the page meta data to attempt to display the following keys:
 - MM `site` => META `og:site_name`
 - MM `title` => META `og:title`
 
+In addition, if you want to customize meta tags by each page's frontmatter, you
+can add `customize_by_frontmatter: true` in `data/site.yml`. The priority would
+be set_meta_tags > frontmatter > site wide defaults.
+
 ### Manually adding addition tags
 
 Create a helper method inside of your config.rb, like so
