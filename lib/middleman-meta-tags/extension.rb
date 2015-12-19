@@ -1,11 +1,10 @@
 require 'middleman-meta-tags/helpers'
 
 module Middleman
-  module MetaTags
-    class << self
-      def registered(app, options_hash = {}, &block)
-        app.helpers Middleman::MetaTags::Helpers
-      end
+  class MetaTagsExtension < Extension
+    def initialize(app, options = {}, &block)
+      super
+      app.helpers Middleman::MetaTags::Helpers
     end
   end
 end
