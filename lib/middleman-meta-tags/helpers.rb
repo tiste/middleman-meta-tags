@@ -68,13 +68,13 @@ module Middleman
         fall_through(site_data, 'twitter:card', 'twitter_card', 'summary_large_image')
         fall_through(site_data, 'twitter:creator', 'twitter_author')
         fall_through(site_data, 'twitter:description', 'description')
-        fall_through(site_data, 'twitter:image:src', 'pull_image')
+        fall_through_image(site_data, 'twitter:image:src', 'pull_image')
         fall_through(site_data, 'twitter:site', 'publisher_twitter')
         fall_through(site_data, 'twitter:title', 'title')
 
         # Open Graph
         fall_through(site_data, 'og:description', 'description')
-        fall_through(site_data, 'og:image', 'pull_image')
+        fall_through_image(site_data, 'og:image', 'pull_image')
         fall_through(site_data, 'og:title', 'title')
       end
 
@@ -86,8 +86,29 @@ module Middleman
                 (need_customized && current_page.data[key]) ||
                 site_data[key] ||
                 default
+        value = yield value if block_given?
         set_meta_tags name => value unless value.blank?
         value
+      end
+
+      def fall_through_image(*args)
+        fall_through(*args) do |path|
+          is_uri?(path) ? path : meta_tags_image_url(path)
+        end
+      end
+
+      def meta_tags_image_url(source)
+        meta_tags_host + image_path(source)
+      end
+
+      def meta_tags_host
+        (data['site'] || {})['host'] || ""
+      end
+
+      # borrowed from Rails 3
+      # http://apidock.com/rails/v3.2.8/ActionView/AssetPaths/is_uri%3F
+      def is_uri?(path)
+        path =~ %r{^[-a-z]+://|^(?:cid|data):|^//}
       end
 
       def full_title(meta_tags)
