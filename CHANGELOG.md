@@ -1,5 +1,9 @@
 ## Next release
 
+## 0.2.0 (03/30/16)
+
+* Allow gem to work with middleman 4.0
+
 ## 0.1.3 (04/30/15)
 
 * Fix `og:` tag syntax
