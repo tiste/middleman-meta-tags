@@ -102,7 +102,7 @@ module Middleman
       end
 
       def meta_tags_host
-        (data['site'] || {})['host'] || ""
+        (data['site'] || {})['host'] || ''
       end
 
       # borrowed from Rails 3
