@@ -86,6 +86,7 @@ Then it looks the page meta data to attempt to display the following keys:
 - MM `pull_image` => META `og:image`
 - MM `site` => META `og:site_name`
 - MM `title` => META `og:title`
+- MM `host` => optional attribute for composing `pull_image` src with asset helper
 
 In addition, if you want to customize meta tags by each page's frontmatter, you
 can add `customize_by_frontmatter: true` in `data/site.yml`. The priority would
@@ -104,6 +105,28 @@ end
 ```
 
 And add it to the layouts and views that you need.
+
+### Pull images
+
+For the `pull_image` to render for twitter metatags, a full url must be used:
+
+```
+pull_image: 'http://example.com/path/to/image.jpg'
+```
+
+If pointing to an image in your Middleman source, you can instead specify the
+relative image path as you would with an asset helper provided you have also
+configured the `host` in your `site.yml`. If your Middleman build activates
+extensions like `:asset_hash`, the full, hashed URL will be generated in your
+metatags.
+
+```
+# site.yml
+host: http://example.com
+
+# your article
+pull_image 'page/to/image/jpg'
+```
 
 ## Contributing
 
