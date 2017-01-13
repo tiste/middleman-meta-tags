@@ -34,6 +34,7 @@ module Middleman
         result << tag(:meta, name: :description, content: description) unless description.blank?
 
         keywords = meta_tags.delete(:keywords)
+        keywords = keywords.join(', ') if keywords.is_a?(Array)
         result << tag(:meta, name: :keywords, content: keywords) unless keywords.blank?
 
         meta_tags.each do |name, content|
