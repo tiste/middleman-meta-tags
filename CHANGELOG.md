@@ -1,5 +1,10 @@
 ## Next release
 
+## 0.3.0 (01/30/17)
+
+* Keywords can be an Array
+* Calculate pull_image path with image_path
+
 ## 0.2.0 (03/30/16)
 
 * Allow gem to work with middleman 4.0
