@@ -37,6 +37,9 @@ module Middleman
         keywords = keywords.join(', ') if keywords.is_a?(Array)
         result << tag(:meta, name: :keywords, content: keywords) unless keywords.blank?
 
+        refresh = meta_tags.delete(:refresh)
+        result << tag(:meta, { :content => refresh, :"http-equiv" => "refresh" }) unless refresh.blank?
+
         meta_tags.each do |name, content|
           if name.start_with?('og:')
             result << tag(:meta, property: name, content: content ) unless content.blank?
