@@ -45,7 +45,9 @@ module Middleman
           end
         end
 
-        result = result.join("\n")
+        has_padding = @_out_buf.split("\n").last.match(/(\s+)$/)
+
+        result = result.join(has_padding ? "\n#{has_padding[1]}" : "\n")
         result.html_safe
       end
 
