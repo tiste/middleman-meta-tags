@@ -128,7 +128,7 @@ module Middleman
           description = description[I18n.locale]
         end
 
-        if description.start_with?('t:')
+        if description && description.start_with?('t:')
           description = I18n.t(description[2..-1])
         end
 
@@ -140,7 +140,7 @@ module Middleman
           title = title[I18n.locale]
         end
 
-        if title.start_with?('t:')
+        if title && title.start_with?('t:')
           title = I18n.t(title[2..-1])
         end
 
