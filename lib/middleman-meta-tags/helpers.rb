@@ -88,6 +88,15 @@ module Middleman
                 site_data[key] ||
                 default
         value = yield value if block_given?
+
+        if key === "description"
+          value = safe_description(value)
+        end
+
+        if key === "title"
+          value = safe_title(value)
+        end
+
         set_meta_tags name => value unless value.blank?
         value
       end
