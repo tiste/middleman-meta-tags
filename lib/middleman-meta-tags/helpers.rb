@@ -88,6 +88,15 @@ module Middleman
                 site_data[key] ||
                 default
         value = yield value if block_given?
+
+        if key === "description"
+          value = safe_description(value)
+        end
+
+        if key === "title"
+          value = safe_title(value)
+        end
+
         set_meta_tags name => value unless value.blank?
         value
       end
@@ -124,10 +133,26 @@ module Middleman
       end
 
       def safe_description(description)
+        if description.is_a?(Hash) && description[I18n.locale]
+          description = description[I18n.locale]
+        end
+
+        if description && description.start_with?('t:')
+          description = I18n.t(description[2..-1])
+        end
+
         truncate(strip_tags(description), length: 200)
       end
 
       def safe_title(title)
+        if title.is_a?(Hash) && title[I18n.locale]
+          title = title[I18n.locale]
+        end
+
+        if title && title.start_with?('t:')
+          title = I18n.t(title[2..-1])
+        end
+
         title = strip_tags(title)
       end
     end
