@@ -141,7 +141,7 @@ module Middleman
           description = I18n.t(description[2..-1])
         end
 
-        truncate(strip_tags(description), length: 200)
+        truncate(strip_tags(description), length: 300)
       end
 
       def safe_title(title)
