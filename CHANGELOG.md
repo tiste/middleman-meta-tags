@@ -1,5 +1,11 @@
 ## Next release
 
+## 0.4.0 (03/28/18)
+
+* Added support for the meta HTTP refresh tag
+* i18n compatibility for title and meta tags
+* Description truncate to 300 chars
+
 ## 0.3.0 (01/30/17)
 
 * Keywords can be an Array
