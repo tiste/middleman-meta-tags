@@ -49,6 +49,14 @@ set_meta_tags keywords: %w(some seo keywords).join(', ')
 keywords %w(some seo keywords).join(', ')
 ```
 
+### Meta-Refresh
+
+To set the HTTP Meta-Refresh property of a page, use the `refresh` key:
+
+```rb
+set_meta_tags refresh: "0;url=http://example.com/"
+```
+
 ## Display meta tags
 
 Into your `<head></head>` tag:
