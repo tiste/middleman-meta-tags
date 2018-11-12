@@ -162,10 +162,10 @@ module Middleman
         set_link_tags author: author_data['website'] if author_data['website']
         set_link_tags license: site_data['license'] if site_data['license']
         me_link_tags = []
-        me_link_tags << "mailto:#{site_data['email']}" if author_data['email'].present?
-        me_link_tags += ["tel:#{site_data['phone']}", "sms:#{site_data['phone']}"] if author_data['phone'].present?
-        %w(github twitter dribbble linkedin facebook).each do |social|
-          me_link_tags << "https://#{social}.com/#{'in/' if social == 'linkedin'}#{site_data[social]}" if author_data[social].present?
+        me_link_tags << "mailto:#{author_data['email']}" if author_data['email'].present?
+        me_link_tags += ["tel:#{author_data['phone']}", "sms:#{author_data['phone']}"] if author_data['phone'].present?
+        %w(github twitter dribbble medium linkedin facebook instagram gitlab bitbucket).each do |social|
+          me_link_tags << "https://#{social}#{['bitbucket'].include?(social) ? '.org' : '.com'}/#{'in/' if social == 'linkedin'}#{author_data[social]}" if author_data[social].present?
           set_link_tags me: me_link_tags
         end
       end
@@ -198,7 +198,7 @@ module Middleman
       end
 
       def meta_tags_image_url(source)
-        meta_tags_host + '/' + image_path(source)
+        meta_tags_host + image_path(source)
       end
 
       def meta_tags_host
