@@ -130,7 +130,7 @@ module Middleman
         fall_through(author_data,     'twitter:creator', 'twitter')
         set_meta_tags                 'twitter:url': current_page_url
         fall_through(site_data,       'twitter:url', 'url')
-        fall_through(site_data        'twitter:title', 'name')
+        fall_through(site_data,       'twitter:title', 'name')
         fall_through(site_data,       'twitter:title', 'site')
         fall_through(site_data,       'twitter:title', 'title')
         fall_through(site_data,       'twitter:description', 'description')
