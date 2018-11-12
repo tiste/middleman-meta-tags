@@ -102,62 +102,70 @@ module Middleman
       end
 
       def auto_set_meta_tags
+        author_data    = site_data['author']
+        geocoding_data = site_data['geocoding']
+
         set_meta_tags charset:      'utf-8',
                       viewport:     'width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no',
                       'http-equiv': 'IE=edge,chrome=1'
 
+        fall_through(site_data, :site, 'name')
         fall_through(site_data, :site, 'site')
         fall_through(site_data, :title, 'title')
         fall_through(site_data, :description, 'description')
         fall_through(site_data, :keywords, 'keywords')
 
         # Microdata
-        fall_through(site_data, 'itemprop:name', 'site')
-        fall_through(site_data, 'itemprop:name', 'title')
-        fall_through(site_data, 'itemprop:description', 'description')
+        fall_through(site_data,       'itemprop:name', 'name')
+        fall_through(site_data,       'itemprop:name', 'site')
+        fall_through(site_data,       'itemprop:name', 'title')
+        fall_through(site_data,       'itemprop:description', 'description')
         fall_through_image(site_data, 'itemprop:image', 'thumbnail')
 
         # Twitter cards
-        set_meta_tags 'twitter:card': 'summary_large_image'
-        fall_through(site_data, 'twitter:card', 'twitter_card')
-        fall_through(site_data, 'twitter:site', 'site')
-        fall_through(site_data, 'twitter:creator', 'twitter')
-        set_meta_tags 'twitter:url': current_page_url
-        fall_through(site_data, 'twitter:url', 'url')
-        fall_through(site_data, 'twitter:title', 'site')
-        fall_through(site_data, 'twitter:title', 'title')
-        fall_through(site_data, 'twitter:description', 'description')
+        set_meta_tags                 'twitter:card': 'summary_large_image'
+        fall_through(site_data,       'twitter:card', 'twitter_card')
+        fall_through(site_data,       'twitter:site', 'name')
+        fall_through(site_data,       'twitter:site', 'site')
+        fall_through(author_data,     'twitter:creator', 'twitter')
+        set_meta_tags                 'twitter:url': current_page_url
+        fall_through(site_data,       'twitter:url', 'url')
+        fall_through(site_data        'twitter:title', 'name')
+        fall_through(site_data,       'twitter:title', 'site')
+        fall_through(site_data,       'twitter:title', 'title')
+        fall_through(site_data,       'twitter:description', 'description')
         fall_through_image(site_data, 'twitter:image', 'thumbnail')
 
         # Open Graph
-        set_meta_tags 'og:url': current_page_url
-        fall_through(site_data, 'og:url', 'url')
-        set_meta_tags 'og:type': 'website'
-        fall_through(site_data, 'og:type', 'type')
-        fall_through(site_data, 'og:title', 'site')
-        fall_through(site_data, 'og:title', 'title')
+        set_meta_tags                 'og:url': current_page_url
+        fall_through(site_data,       'og:url', 'url')
+        set_meta_tags                 'og:type': 'website'
+        fall_through(site_data,       'og:type', 'type')
+        fall_through(site_data,       'og:title', 'name')
+        fall_through(site_data,       'og:title', 'site')
+        fall_through(site_data,       'og:title', 'title')
         fall_through_image(site_data, 'og:image', 'thumbnail')
-        fall_through(site_data, 'og:description', 'description')
-        fall_through(site_data, 'og:site_name', 'site')
-        set_meta_tags 'og:locale': 'en_US'
-        fall_through(site_data, 'og:locale', 'locale')
-        fall_through(site_data, 'article:author', 'author')
+        fall_through(site_data,       'og:description', 'description')
+        fall_through(site_data,       'og:site_name', 'name')
+        fall_through(site_data,       'og:site_name', 'site')
+        set_meta_tags                 'og:locale': 'en_US'
+        fall_through(site_data,       'og:locale', 'locale')
+        fall_through(author_data,     'article:author', 'name')
 
         # Geocoding
-        geocoding_data = site_data['geocoding']
-        fall_through(geocoding_data, 'latitude', 'latitude')
-        fall_through(geocoding_data, 'longitude', 'longitude')
-        fall_through(geocoding_data, 'geo.placename', 'place')
-        fall_through(geocoding_data, 'geo.region', 'region')
+        fall_through(geocoding_data,  'latitude', 'latitude')
+        fall_through(geocoding_data,  'longitude', 'longitude')
+        fall_through(geocoding_data,  'geo.placename', 'place')
+        fall_through(geocoding_data,  'geo.region', 'region')
 
         # External links
-        set_link_tags author: site_data['website'] if site_data['website']
+        set_link_tags author: author_data['website'] if author_data['website']
         set_link_tags license: site_data['license'] if site_data['license']
         me_link_tags = []
-        me_link_tags << "mailto:#{site_data['email']}" if site_data['email'].present?
-        me_link_tags += ["tel:#{site_data['phone']}", "sms:#{site_data['phone']}"] if site_data['phone'].present?
+        me_link_tags << "mailto:#{site_data['email']}" if author_data['email'].present?
+        me_link_tags += ["tel:#{site_data['phone']}", "sms:#{site_data['phone']}"] if author_data['phone'].present?
         %w(github twitter dribbble linkedin facebook).each do |social|
-          me_link_tags << "https://#{social}.com/#{'in/' if social == 'linkedin'}#{site_data[social]}" if site_data[social].present?
+          me_link_tags << "https://#{social}.com/#{'in/' if social == 'linkedin'}#{site_data[social]}" if author_data[social].present?
           set_link_tags me: me_link_tags
         end
       end
