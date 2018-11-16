@@ -198,7 +198,7 @@ module Middleman
       end
 
       def meta_tags_image_url(source)
-        meta_tags_host + '/' + image_path(source)
+        File.join(meta_tags_host, image_path(source))
       end
 
       def meta_tags_host
