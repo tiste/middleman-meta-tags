@@ -158,6 +158,10 @@ module Middleman
         fall_through(geocoding_data,  'geo.placename', 'place')
         fall_through(geocoding_data,  'geo.region', 'region')
 
+        # Theme color
+        fall_through(site_data,       'theme-color', 'base_color')
+        fall_through(site_data,       'msapplication-TileColor', 'base_color')
+
         # External links
         set_link_tags author: author_data['website'] if author_data['website']
         set_link_tags license: site_data['license'] if site_data['license']
