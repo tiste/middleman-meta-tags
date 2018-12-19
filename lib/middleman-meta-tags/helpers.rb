@@ -102,9 +102,6 @@ module Middleman
       end
 
       def auto_set_meta_tags
-        author_data    = site_data['author']
-        geocoding_data = site_data['geocoding']
-
         set_meta_tags charset:      'utf-8',
                       viewport:     'width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no',
                       'http-equiv': 'IE=edge,chrome=1'
@@ -150,22 +147,27 @@ module Middleman
         fall_through(site_data,       'og:site_name', 'site')
         set_meta_tags                 'og:locale': 'en_US'
         fall_through(site_data,       'og:locale', 'locale')
-        fall_through(author_data,     'article:author', 'name')
-
-        # Geocoding
-        fall_through(geocoding_data,  'latitude', 'latitude')
-        fall_through(geocoding_data,  'longitude', 'longitude')
-        fall_through(geocoding_data,  'geo.placename', 'place')
-        fall_through(geocoding_data,  'geo.region', 'region')
 
         # Theme color
         fall_through(site_data,       'theme-color', 'base_color')
         fall_through(site_data,       'msapplication-TileColor', 'base_color')
 
-        # External links
+        geocoding_data = site_data['geocoding']
+        author_data    = site_data['author']
+
+        # Geocoding
+        fall_through(geocoding_data, 'latitude', 'latitude')
+        fall_through(geocoding_data, 'longitude', 'longitude')
+        fall_through(geocoding_data, 'geo.placename', 'place')
+        fall_through(geocoding_data, 'geo.region', 'region')
+
+        # Author
+        fall_through(author_data, 'article:author', 'name')
         set_link_tags author: author_data['website'] if author_data['website']
         set_link_tags license: site_data['license'] if site_data['license']
+
         me_link_tags = []
+        me_link_tags << author_data['website'] if author_data['website']
         me_link_tags << "mailto:#{author_data['email']}" if author_data['email'].present?
         me_link_tags += ["tel:#{author_data['phone']}", "sms:#{author_data['phone']}"] if author_data['phone'].present?
         %w(github twitter dribbble medium linkedin facebook instagram gitlab bitbucket).each do |social|
