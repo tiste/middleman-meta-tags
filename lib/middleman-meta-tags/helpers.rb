@@ -102,6 +102,9 @@ module Middleman
       end
 
       def auto_set_meta_tags
+        geocoding_data = site_data['geocoding']
+        author_data    = site_data['author']
+
         set_meta_tags charset:      'utf-8',
                       viewport:     'width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no',
                       'http-equiv': 'IE=edge,chrome=1'
@@ -151,9 +154,6 @@ module Middleman
         # Theme color
         fall_through(site_data,       'theme-color', 'base_color')
         fall_through(site_data,       'msapplication-TileColor', 'base_color')
-
-        geocoding_data = site_data['geocoding']
-        author_data    = site_data['author']
 
         # Geocoding
         fall_through(geocoding_data, 'latitude', 'latitude')
