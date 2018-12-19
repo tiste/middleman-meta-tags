@@ -162,7 +162,6 @@ module Middleman
         fall_through(geocoding_data, 'geo.region', 'region')
 
         # Author
-        fall_through(author_data, 'article:author', 'name')
         set_link_tags author: author_data['website'] if author_data['website']
         set_link_tags license: site_data['license'] if site_data['license']
 
