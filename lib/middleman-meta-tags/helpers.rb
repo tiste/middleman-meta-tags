@@ -102,8 +102,8 @@ module Middleman
       end
 
       def auto_set_meta_tags
-        geocoding_data = site_data['geocoding']
-        author_data    = site_data['author']
+        geocoding_data = site_data['geocoding'] || {}
+        author_data    = site_data['author'] || {}
 
         set_meta_tags charset:      'utf-8',
                       viewport:     'width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no',
