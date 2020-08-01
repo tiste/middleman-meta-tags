@@ -1,3 +1,4 @@
+require 'middleman-core'
 require 'middleman-meta-tags/helpers'
 
 module Middleman
