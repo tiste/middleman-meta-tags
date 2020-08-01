@@ -143,3 +143,8 @@ pull_image 'page/to/image/jpg'
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
+## Publishing
+
+1. `gem build middleman-meta-tags.gemspec`
+2. `bundle exec rake release`

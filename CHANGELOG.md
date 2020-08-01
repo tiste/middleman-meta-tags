@@ -1,4 +1,8 @@
-## Next release
+## 0.5.0 (08/01/20)
+
+* Description truncate to 220 chars
+* Add test
+* Add more tags
 
 ## 0.4.0 (03/28/18)
 
