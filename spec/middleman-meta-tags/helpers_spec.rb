@@ -35,6 +35,19 @@ describe Middleman::MetaTags::Helpers do
 <link rel="site" href="My Awesome Website" />')
   end
 
+  describe "auto_display_meta_tags" do
+    before do
+      allow(h).to receive(:data).and_return({})
+    end
+
+    it "includes a viewport tag" do
+      tags = h.auto_display_meta_tags.split("\n")
+      expect(tags).to include(
+        '<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />'
+      )
+    end
+  end
+
   describe "meta_tags_image_url" do
     before do
       allow(h).to receive(:data).and_return(
