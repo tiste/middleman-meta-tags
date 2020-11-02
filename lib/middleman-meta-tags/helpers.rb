@@ -106,7 +106,6 @@ module Middleman
         author_data    = site_data['author'] || {}
 
         set_meta_tags charset:      'utf-8',
-                      viewport:     'width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no',
                       'http-equiv': 'IE=edge,chrome=1'
 
         fall_through(site_data, :site, 'name')
@@ -114,6 +113,7 @@ module Middleman
         fall_through(site_data, :title, 'title')
         fall_through(site_data, :description, 'description')
         fall_through(site_data, :keywords, 'keywords')
+        fall_through(site_data, :viewport, 'viewport', 'width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no')
 
         # Microdata
         fall_through(site_data,       'itemprop:name', 'name')

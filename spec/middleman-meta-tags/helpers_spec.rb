@@ -46,6 +46,21 @@ describe Middleman::MetaTags::Helpers do
         '<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />'
       )
     end
+
+    it "prefers viewport from site data" do
+      allow(h).to receive(:data).and_return(
+        {
+          "site" => {
+            "viewport" => "width=device-width,user-scalable=yes"
+          }
+        }
+      )
+
+      tags = h.auto_display_meta_tags.split("\n")
+      expect(tags).to include(
+        '<meta name="viewport" content="width=device-width,user-scalable=yes" />'
+      )
+    end
   end
 
   describe "meta_tags_image_url" do
