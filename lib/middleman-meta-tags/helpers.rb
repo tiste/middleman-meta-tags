@@ -203,6 +203,7 @@ module Middleman
       end
 
       def meta_tags_image_url(source)
+        return nil unless source.present?
         File.join(meta_tags_host, image_path(source))
       end
 
