@@ -1,3 +1,9 @@
+## 0.6.0 (11/03/20)
+
+* Allow viewport to be customized
+* Add ability to not have images in meta data
+* Use a newer version of Ruby
+
 ## 0.5.0 (08/01/20)
 
 * Description truncate to 220 chars

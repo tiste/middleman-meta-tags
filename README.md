@@ -146,5 +146,6 @@ pull_image 'page/to/image/jpg'
 
 ## Publishing
 
-1. `gem build middleman-meta-tags.gemspec`
-2. `bundle exec rake release`
+1. Update `./lib/middleman-meta-tags/version.rb` and CHANGELOG.md
+2. `gem build middleman-meta-tags.gemspec`
+3. `bundle exec rake release`
