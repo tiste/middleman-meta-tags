@@ -34,4 +34,28 @@ describe Middleman::MetaTags::Helpers do
     expect(h.display_meta_tags site: 'My Awesome Website').to eql('<title>My Awesome Website</title>
 <link rel="site" href="My Awesome Website" />')
   end
+
+  describe "meta_tags_image_url" do
+    before do
+      allow(h).to receive(:data).and_return(
+        {
+          "site" => {
+            "host" => "https://example.com"
+          }
+        }
+      )
+    end
+
+    it "returns a URL when image is given" do
+      expect(
+        h.send(:meta_tags_image_url, "/awesome/image.jpg")
+      ).to eq("https://example.com/awesome/image.jpg")
+    end
+
+    it "returns nil when image is nil" do
+      expect(
+        h.send(:meta_tags_image_url, nil)
+      ).to be_nil
+    end
+  end
 end
