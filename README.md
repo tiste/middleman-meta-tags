@@ -87,14 +87,14 @@ Then it looks the page meta data to attempt to display the following keys:
 - MM `twitter_card` (defaults to `summary_large_image`) => META `twitter:card`
 - MM `twitter_author` => META `twitter:creator`
 - MM `description` => META `twitter:description`
-- MM `pull_image` => META `twitter:image:src`
+- MM `thumbnail` => META `twitter:image:src`
 - MM `publisher_twitter` => META `twitter:site`
 - MM `title` => META `twitter:title`
 - MM `description` => META `og:description`
-- MM `pull_image` => META `og:image`
+- MM `thumbnail` => META `og:image`
 - MM `site` => META `og:site_name`
 - MM `title` => META `og:title`
-- MM `host` => optional attribute for composing `pull_image` src with asset helper
+- MM `host` => optional attribute for composing `thumbnail` src with asset helper
 
 In addition, if you want to customize meta tags by each page's frontmatter, you
 can add `customize_by_frontmatter: true` in `data/site.yml`. The priority would
@@ -116,10 +116,10 @@ And add it to the layouts and views that you need.
 
 ### Pull images
 
-For the `pull_image` to render for twitter metatags, a full url must be used:
+For the `thumbnail` to render for twitter metatags, a full url must be used:
 
 ```
-pull_image: 'http://example.com/path/to/image.jpg'
+thumbnail: 'http://example.com/path/to/image.jpg'
 ```
 
 If pointing to an image in your Middleman source, you can instead specify the
@@ -133,7 +133,7 @@ metatags.
 host: http://example.com
 
 # your article
-pull_image 'page/to/image/jpg'
+thumbnail 'page/to/image/jpg'
 ```
 
 ## Contributing
