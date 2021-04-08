@@ -1,4 +1,4 @@
-# Middleman MetaTags
+# Middleman MetaTags [![Ruby](https://github.com/tiste/middleman-meta-tags/actions/workflows/ruby.yml/badge.svg)](https://github.com/tiste/middleman-meta-tags/actions/workflows/ruby.yml)
 
 SEO gem for your Middleman apps.
 
