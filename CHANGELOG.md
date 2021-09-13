@@ -1,3 +1,7 @@
+## 0.7.0 (13/11/21)
+
+* Add middleman 4.4 support
+
 ## 0.6.0 (11/03/20)
 
 * Allow viewport to be customized
