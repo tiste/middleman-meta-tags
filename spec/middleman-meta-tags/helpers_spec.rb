@@ -1,5 +1,7 @@
 require 'spec_helper'
 
+require 'middleman-core/core_extensions/data'
+
 describe Middleman::MetaTags::Helpers do
   let(:h) { Class.new { extend Middleman::MetaTags::Helpers } }
 
@@ -84,6 +86,33 @@ describe Middleman::MetaTags::Helpers do
       expect(
         h.send(:meta_tags_image_url, nil)
       ).to be_nil
+    end
+  end
+
+  describe "site_data" do
+    before do
+      app = :app
+      data_store = Middleman::CoreExtensions::Data::DataStore.new(
+        app,
+        Middleman::CoreExtensions::Data::DATA_FILE_MATCHER
+      )
+      data_store.store(
+        :site,
+        {
+          :host => "https://middlemanapp.com/",
+          :site => "Middleman",
+        }
+      )
+      allow(h).to receive(:data).and_return(data_store)
+    end
+
+    it "returns a HashWithIndifferentAccess" do
+      expect(h.site_data).to be_a(ActiveSupport::HashWithIndifferentAccess)
+    end
+
+    it "returns data from the :site key" do
+      expect(h.site_data['site']).to eq("Middleman")
+      expect(h.site_data[:site]).to eq("Middleman")
     end
   end
 end
