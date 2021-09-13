@@ -1,3 +1,5 @@
+require "active_support/core_ext/hash/indifferent_access"
+
 module Middleman
   module MetaTags
     module Helpers
